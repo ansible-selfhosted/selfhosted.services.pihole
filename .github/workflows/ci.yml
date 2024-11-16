@@ -1,0 +1,37 @@
+---
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  ansible-lint:
+    name: Ansible lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main
+
+  test:
+    name: Molecule Tests
+    runs-on: ubuntu-latest
+    container:
+      image: catthehacker/ubuntu:act-22.04
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install hatch
+
+      - name: Test with molecule
+        run: hatch run test:action
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"

@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier
+_commit: 0.2.0
+_src_path: gh:ansible-selfhosted/selfhosted-role-template
+author_company: ''
+author_email: git@speakintel.net
+author_name: SpeakinTelnet
+collection_name: services
+copyright_holder: SpeakinTelnet
+license: MIT
+related_url: https://docs.pi-hole.net/
+repository_host: github.com
+repository_url: https://github.com/ansible-selfhosted/selfhosted.services.pihole
+role_name: pihole
+short_description: A role to deploy Pi-hole using rootless Podman with systemd

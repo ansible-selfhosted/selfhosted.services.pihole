@@ -1,0 +1,37 @@
+[envs.test]
+python = "3.12"
+detached = true
+dependencies = [
+  "ansible==10.4.0",
+  "molecule==24.9.0",
+  "molecule-plugins[podman, docker]==23.5.3",
+]
+
+[envs.test.scripts]
+test = "molecule test {args}"
+action = "molecule test -d docker {args}"
+create = "molecule create {args}"
+converge = "molecule converge {args}"
+verify = "molecule verify {args}"
+destroy = "molecule destroy {args}"
+debug = [
+  "create",
+  "converge",
+  "podman exec -ti instance sudo -u podman /usr/lib/systemd/system-generators/podman-system-generator --user --dryrun",
+  "destroy",
+]
+
+[envs.lint]
+detached = true
+dependencies = ["ansible-lint==24.9.2"]
+
+[envs.lint.scripts]
+fmt = "ansible-lint --fix --exclude .copier-answers.yml"
+lint = "ansible-lint --exclude .copier-answers.yml --exclude molecule/ --exclude meta/"
+
+[envs.docs]
+detached = true
+dependencies = ["ruamel.yaml==0.18.6"]
+
+[envs.docs.scripts]
+generate = "python generate_readme.py"

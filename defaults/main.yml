@@ -1,0 +1,4 @@
+---
+# defaults file for services.pihole
+
+published_port: 8080

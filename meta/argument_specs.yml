@@ -1,0 +1,17 @@
+---
+
+argument_specs:
+  main:
+    short_description: Main entry point for the pihole role
+    description:
+      - This is the main entry point for the pihole role.
+      - A role to deploy Pi-hole using rootless Podman with systemd
+    author:
+      - SpeakinTelnet
+    options:
+      published_port:
+        type: int
+        required: false
+        default: 8080
+        description:
+          - The default port for the web server.

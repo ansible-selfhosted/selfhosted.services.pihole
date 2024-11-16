@@ -1,0 +1,23 @@
+---
+# skip jinja testing
+- name: Get user info for "{{ ansible_user_id }}"
+  ansible.builtin.user:
+    user: "{{ ansible_user_id }}"
+    state: present
+  register: user_info
+
+- name: Put container related files on the host
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0640"
+  loop:
+    - { src: httpd.container.j2, dest: "{{ user_info.home }}/.config/containers/systemd/httpd.container" }
+
+- name: Start the container service
+  ansible.builtin.systemd:
+    name: httpd
+    state: started
+    scope: user
+    enabled: true
+    daemon_reload: true
