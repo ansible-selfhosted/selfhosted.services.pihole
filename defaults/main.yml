@@ -1,4 +1,30 @@
 ---
-# defaults file for services.pihole
-
-published_port: 8080
+pihole_config_path: ~/.config/pihole
+pihole_dhcp_ipv6: false
+pihole_dhcp_active: false
+pihole_dhcp_end:
+pihole_dhcp_lease_time: 24
+pihole_dhcp_port: 1067
+pihole_dhcp_rapid_commit: false
+pihole_dhcp_router:
+pihole_dhcp_start:
+pihole_dns: 8.8.8.8;8.8.4.4
+pihole_dnsmasq_path: ~/.local/share/containers/storage/pihole
+pihole_dnssec: false
+pihole_dns_bogus_priv: true
+pihole_dns_fqdn_required: true
+pihole_dns_port: 1053
+pihole_domain: lan
+pihole_ipv6: true
+pihole_query_logging: true
+pihole_rev_server: false
+pihole_rev_server_cidr:
+pihole_rev_server_domain:
+pihole_rev_server_target:
+pihole_temperature_unit: c
+pihole_timezone: Etc/UTC
+pihole_virtual_host: <hostname>
+pihole_web_password_file:
+pihole_web_port: 8080
+pihole_web_theme: default-light
+pihole_webui_boxed_layout: boxed

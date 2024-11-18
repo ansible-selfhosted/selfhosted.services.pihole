@@ -34,4 +34,5 @@ detached = true
 dependencies = ["ruamel.yaml==0.18.6"]
 
 [envs.docs.scripts]
-generate = "python generate_readme.py"
+readme = "python generate_readme.py"
+defaults = "python generate_defaults.py"

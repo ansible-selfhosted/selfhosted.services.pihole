@@ -6,17 +6,32 @@
     state: present
   register: user_info
 
+- name: Normalize default paths and variables
+  ansible.builtin.set_fact:
+    pihole_config_path: "{{ pihole_config_path | replace('~', user_info.home) }}"
+    pihole_dnsmasq_path: "{{ pihole_dnsmasq_path | replace('~', user_info.home) }}"
+    pihole_virtual_host: "{{ pihole_virtual_host | replace('<HOSTNAME>', inventory_hostname) }}"
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0775"
+  loop:
+    - "{{ pihole_config_path }}"
+    - "{{ pihole_dnsmasq_path }}"
+
 - name: Put container related files on the host
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "0640"
   loop:
-    - { src: httpd.container.j2, dest: "{{ user_info.home }}/.config/containers/systemd/httpd.container" }
+    - { src: pihole.container.j2, dest: "{{ user_info.home }}/.config/containers/systemd/pihole.container" }
 
 - name: Start the container service
   ansible.builtin.systemd:
-    name: httpd
+    name: pihole
     state: started
     scope: user
     enabled: true

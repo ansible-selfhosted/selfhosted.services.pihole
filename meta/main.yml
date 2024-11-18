@@ -3,7 +3,7 @@
 galaxy_info:
   author: SpeakinTelnet
   description: A role to deploy Pi-hole using rootless Podman with systemd
-  company: 
+  company: ""
   role_name: pihole
   namespace: selfhosted
 

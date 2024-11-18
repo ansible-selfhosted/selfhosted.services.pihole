@@ -1,0 +1,44 @@
+[Unit]
+Description=A DNS sinkhole that protects your devices from unwanted content.
+
+[Container]
+AddCapability=SYS_ADMIN
+AutoUpdate=registry
+ContainerName=pihole
+Environment=DHCP_IPv6={{ pihole_dhcp_ipv6 }}
+Environment=DHCP_ACTIVE={{ pihole_dhcp_active }}
+Environment=DHCP_END={{ pihole_dhcp_end }}
+Environment=DHCP_LEASETIME={{ pihole_dhcp_lease_time }}
+Environment=DHCP_ROUTER={{ pihole_dhcp_router }}
+Environment=DHCP_rapid_commit={{ pihole_dhcp_rapid_commit }}
+Environment=DHCP_START={{ pihole_dhcp_start }}
+Environment=PIHOLE_DNS_={{ pihole_dns }}
+Environment=DNSSEC={{ pihole_dnssec }}
+Environment=DNS_BOGUS_PRIV={{ pihole_dns_bogus_priv }}
+Environment=DNS_FQDN_REQUIRED={{ pihole_dns_fqdn_required }}
+Environment=PIHOLE_DOMAIN={{ pihole_domain }}
+Environment=IPv6={{ pihole_ipv6 }}
+Environment=QUERY_LOGGING={{ pihole_query_logging }}
+Environment=REV_SERVER={{ pihole_rev_server }}
+Environment=REV_SERVER_DOMAIN={{ pihole_rev_server_domain }}
+Environment=REV_SERVER_TARGET={{ pihole_rev_server_target }}
+Environment=REV_SERVER_CIDR={{ pihole_rev_server_cidr }}
+Environment=TEMPERATUREUNIT={{ pihole_temperature_unit }}
+Environment=TZ={{ pihole_timezone }}
+Environment=VIRTUAL_HOST={{ pihole_virtual_host }}
+Environment=WEBPASSWORD_FILE={{ pihole_web_password_file }}
+Environment=WEBTHEME={{ pihole_web_theme }}
+Environment=WEBUIBOXEDLAYOUT={{ pihole_webui_boxed_layout }}
+Image=docker.io/pihole/pihole:latest
+PublishPort={{ pihole_dns_port }}:53/tcp
+PublishPort={{ pihole_dns_port }}:53/udp
+PublishPort={{ pihole_dhcp_port }}:67/udp
+PublishPort={{ pihole_web_port }}:80/tcp
+Volume={{ pihole_config_path }}:/etc/pihole:Z
+Volume={{ pihole_dnsmasq_path }}:/etc/dnsmasq.d:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
