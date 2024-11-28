@@ -43,13 +43,13 @@ A role to deploy Pi-hole using rootless Podman with systemd
 |pihole_rev_server_cidr|Reverse DNS<br>If conditional forwarding is enabled, set the reverse DNS zone (e.g. `192.168.0.0/24`)|str|False|None|
 |pihole_rev_server_domain|If conditional forwarding is enabled, set the domain of the local network router|str|False|None|
 |pihole_rev_server_target|Router's IP<br>If conditional forwarding is enabled, set the IP of the local network router|str|False|None|
-|pihole_temperature_unit|Set preferred temperature unit to `c`: Celsius, `k`: Kelvin, or `f` Fahrenheit units.|str|False|c|<li>c</li><br><li>K</li><br><li>f</li>
+|pihole_temperature_unit|Set preferred temperature unit to `c`: Celsius, `k`: Kelvin, or `f` Fahrenheit units.|str|False|c|<ul><li>c</li><li>K</li><li>f</li></ul>
 |pihole_timezone|Timezone for Pi-hole.|str|False|Etc/UTC|
 |pihole_virtual_host|What your web server 'virtual host' is, accessing admin through this Hostname/IP allows you to make changes to the whitelist / blacklists in addition to the default 'http://pi.hole/admin/' address|str|False|<hostname>|
 |pihole_web_password_file|Set an Admin password using [Docker secrets](https://docs.docker.com/engine/swarm/secrets/). If `WEBPASSWORD` is set, `WEBPASSWORD_FILE` is ignored. If `WEBPASSWORD` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file path, then `WEBPASSWORD` will be set to the contents of `WEBPASSWORD_FILE`.|str|False|None|
 |pihole_web_port|The default port for Pi-Hole web server.|int|False|8080|
-|pihole_web_theme|User interface theme to use.|str|False|default-light|<li>default-dark</li><br><li>default-darker</li><br><li>default-light</li><br><li>default-auto</li><br><li>high-contrast</li><br><li>high-contrast-dark</li><br><li>lcars</li>
-|pihole_webui_boxed_layout|Use boxed layout (helpful when working on large screens)|str|False|boxed|<li>boxed</li><br><li>traditional</li>
+|pihole_web_theme|User interface theme to use.|str|False|default-light|<ul><li>default-dark</li><li>default-darker</li><li>default-light</li><li>default-auto</li><li>high-contrast</li><li>high-contrast-dark</li><li>lcars</li></ul>
+|pihole_webui_boxed_layout|Use boxed layout (helpful when working on large screens)|str|False|boxed|<ul><li>boxed</li><li>traditional</li></ul>
 
 
 ## Example Playbook
