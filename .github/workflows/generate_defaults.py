@@ -4,8 +4,8 @@ from ruamel.yaml import YAML, YAMLError
 yaml = YAML()
 yaml.explicit_start = True
 
-arguments_path = pathlib.Path(__file__).parent / "meta" / "argument_specs.yml"
-defaults_path = pathlib.Path(__file__).parent / "defaults" / "main.yml"
+arguments_path = pathlib.Path.cwd() / "meta" / "argument_specs.yml"
+defaults_path = pathlib.Path.cwd() / "defaults" / "main.yml"
 
 
 def parse_yaml(path):
